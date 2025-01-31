@@ -1,0 +1,297 @@
+<style>
+    .ticketInfo-Con{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    .Tick-Options{
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        margin-top: 15px;
+    }
+    .SiOpt{
+        width: 250px;
+        height: 225px;
+        background-color: lightgrey;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        background-image: url('https://airshowlondon.com/wp-content/uploads/2023/11/Asset-8@3x-100-300x262.jpg');
+        background-size: contain;
+    }
+
+    .view-other{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .Bnt-View {
+        background-color: #CC0000;
+        color: white;
+        padding: 5px;
+        font-weight: bold;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+        margin-right: 10px;
+        font-size: 13px;
+        transition: 0.3s all ease;
+    }
+    .Bnt-View:hover{
+        color: #CC0000;
+        background-color: white;
+    }
+    .title-options{
+        display: flex;
+        justify-content: center;
+        margin-top: 13px;
+        color: #ffffff;
+        font-weight: 500;
+    }
+    .bnt-opt-con{
+        display: flex;
+        justify-content: center;
+        margin-bottom: 10px;
+    }
+    .buy-ticket{
+        background-color: lightgray;
+        display: flex;
+        flex-direction: column;
+        width: 340px;
+        justify-content: center;
+    }
+    .general-info{
+        display: flex;
+        flex-direction: column;
+        width: 710px;
+    }
+    .width-1024{
+        display: flex;
+        justify-content: center;
+        margin-top: 25px;
+        align-items: center;
+        gap: 10px;
+    }
+    .get-tick-container{
+        width: 100%;
+        max-width: 1100px;
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+        z-index: 1;
+    }
+    .btn-get-ticket{
+        background-color: #CC0000;
+        color: white;
+        padding: 10px;
+        font-weight: bold;
+        border: none;
+        cursor: pointer;
+        font-size: 23px;
+        margin-top: 5px;
+        border-radius: 3px;
+        transition: all 0.5s ease;
+        padding-left: 80px;
+        padding-right: 80px;
+        padding-top: 15px;
+        padding-bottom: 15px;
+    }
+    .btn-get-ticket:hover{
+        background-color: 003580;
+        color: white;
+    }
+    .bnt-get-con{
+        display: flex;
+        justify-content: center;
+    }
+    .img-con{
+        display: flex;
+        justify-content: center;
+    }
+
+    .header-line{
+        background-color: gray;
+        margin: 19px 19px 19px 19px;
+        height: 1px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .brand-img-con{
+        margin-top: 15px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 30px;
+        justify-content: space-around;
+        align-items: center;
+        margin-bottom: 15px;
+    }
+    .brand-img{
+        width: 122px;
+    }
+    .image-spon{
+        object-fit: contain;
+        width: 120px;
+    }
+    .gen-title{
+        background-color: black;
+        height: max-content;
+        color: white;
+        margin-top: 23px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 23px;
+    }
+    .adm-para{
+        font-size: 18px;
+        color: #686868;
+        font-family: "Helvetica", Verdana, Arial, sans-serif;
+        line-height: 26px;
+    }
+    .header5{
+        color: #686868;
+        font-family: "Helvetica", Verdana, Arial, sans-serif;
+        margin: 15px 15px 0px 0px;
+    }
+    .ticketInfo-header{
+        display: flex;
+        justify-content: center;
+        margin-top: 40px;
+        margin-bottom: 40px;
+    }
+    .tik-header-btn{
+        border: none;
+        background-color: #febb02;
+        color: #555;
+        border-radius: 5px;
+    }
+
+    .map-con{
+        display: flex;
+        justify-content: center;
+        margin-top: 25px;
+        align-items: center;
+        gap: 10px;
+    }
+    .map-img{
+        width: 100%;
+        max-width: 1100px;
+        display: flex;
+        justify-content: space-between;
+        z-index: 1;
+    }
+    .imageOfMap{
+        width: 1100px;
+        object-fit: contain;
+        height: 700px;
+    }
+    .tik-header-btn2{
+        border: none;
+        background-color: #cf2e2e;
+        color: #ffffff;
+        border-radius: 5px;
+    }
+</style>
+<%- include('partials/header') %>
+<div class="ticketInfo-Con">
+    <div class="ticketInfo-header">
+        <button class="tik-header-btn"><h1>VIEW OTHER OPTIONS</h1></button>
+    </div>
+    <div class="Tick-Options">
+        <div class="SiOpt">
+            <div class="title-options"><%= airshow.name %></div>
+            <div class="bnt-opt-con" style="margin-left: 10px;"><a href="/ticket/getBySection/<%= airshow.id %>/left"><button class="Bnt-View">Left Section Tickets</button></a></div>
+        </div>
+        <div class="SiOpt">
+            <div class="title-options"><%= airshow.name %></div>
+            <div class="bnt-opt-con" style="margin-left: 11px;"><a href="/ticket/getBySection/<%= airshow.id %>/center"><button class="Bnt-View">Center Section Tickets</button></a></div>
+        </div>
+        <div class="SiOpt">
+            <div class="title-options"><%= airshow.name %></div>
+            <div class="bnt-opt-con" style="margin-left: 11px;"><a href="/ticket/getBySection/<%= airshow.id %>/right"><button class="Bnt-View">Right Section Tickets</button></a></div>
+        </div>
+    </div>
+</div>
+<div class="ticketInfo-header">
+    <button class="tik-header-btn"><h1>TICKET INFORMATION</h1></button>
+</div>
+<div class="width-1024">
+    <div class="get-tick-container">
+        <div class="buy-ticket">
+            <div class="img-con">
+                <form action="/ticket/ticketStatus/<%= airshow.id %>/<%= ticket.id %>" method="POST">
+                    <button class="btn-get-ticket" type="submit">GET TICKET</button>
+                </form>
+            </div>
+            <div class="header-line"></div>
+            <div class="brand-img-con">
+                <div class="brand-img">
+                    <img class="image-spon" src="https://www.lukedays2024.com/wp-content/uploads/2024/02/acero-300x103.png" alt="">
+                </div>
+                <div class="brand-img">
+                    <img class="image-spon" src="https://www.lukedays2024.com/wp-content/uploads/2024/02/myhomegroup-300x124.png" alt="">
+                </div>
+                <div class="brand-img">
+                    <img class="image-spon" src="https://www.lukedays2024.com/wp-content/uploads/2024/03/Fairlife-Logo-300x283.jpg" alt="">
+                </div>
+                <div class="brand-img">
+                    <img class="image-spon" src="https://www.lukedays2024.com/wp-content/uploads/2024/03/Print_TeslaLockUp_Black-232x300.png" alt="">
+                </div>
+                <div class="brand-img">
+                    <img class="image-spon" src="https://www.lukedays2024.com/wp-content/uploads/2024/03/LOGO-RbA-Vertical-2C-262x300.jpg" alt="">
+                </div>
+                <div class="brand-img">
+                    <img class="image-spon" src="https://www.lukedays2024.com/wp-content/uploads/2024/03/CU-West_Logo_NEW-6-17-300x115.png" alt="">
+                </div>
+                <div class="brand-img">
+                    <img class="image-spon" src="https://www.lukedays2024.com/wp-content/uploads/2024/03/Valley-Toyota-Dealers-300x36.jpg" alt="">
+                </div>
+                <div class="brand-img">
+                    <img class="image-spon" src="https://www.lukedays2024.com/wp-content/uploads/2024/03/First-Command_Logo_NEW-11-17-300x82.png" alt="">
+                </div>
+                <div class="brand-img">
+                    <img class="image-spon" src="https://www.lukedays2024.com/wp-content/uploads/2024/03/Global-Federal-Credit-Union-1-300x92.jpeg" alt="">
+                </div>
+                <div class="brand-img">
+                    <img class="image-spon" src="https://www.lukedays2024.com/wp-content/uploads/2024/03/Honeywell-logo-Aug-2019-300x59.jpg" alt="">
+                </div>
+                <div class="brand-img">
+                    <img class="image-spon" src="https://www.lukedays2024.com/wp-content/uploads/2024/03/PW-Logo_rgb-black-300x56.png" alt="">
+                </div>
+                <div class="brand-img">
+                    <img class="image-spon" src="https://www.lukedays2024.com/wp-content/uploads/2024/03/Uptown-Alley_Logo-300x101.png" alt="">
+                </div>
+            </div>
+        </div>
+        <div class="general-info">
+            <div class="gen-title"><h3>GENERAL ADMISSION IS FREE. PREMIUM TICKETS ARE OPTIONAL</h3></div>
+            <div>
+                <p class="adm-para">We suggest arriving early before to avoid potential traffic. General admission to the show is free, a ticket is not required. Seating is not provided for free general admission. We encourage general admission guests to bring portable chairs or blankets to sit and view the air show.
+                </p>
+                <p class="adm-para">Seating options are available, but not required to attend the air show. Upgraded VIP Experience options are available for purchase.</p>
+            </div>
+            <div class="header5"><h4>HOW TO GET HERE - PARKING AND SHUTTLE INFO:</h4></div>
+            <div>
+                <p class="adm-para">Driving: A parking pass is needed for those driving to the event. Premium seating purchases include on-base parking. Accessible parking is free on-base.</p>
+                <p class="adm-para">Rideshare: Ridesharing is recommended to reduce traffic and environmental impact. Shuttles are available from off-base parking areas except the Blue Lot, which is a walkable distance (approx. <%= airshow.distance %>).</p>
+                <p class="adm-para">Designated rideshare drop off location: <%= airshow.address %>, taking place in the city of <%= airshow.city %></p>
+                <p class="adm-para">Distance to airshow from international airport: <%= airshow.distance %></p>
+                <p class="adm-para">¿ Is it a featured Aishow ? <%= airshow.featured %></p>
+                <p class="adm-para"><%= airshow.desc %></p>
+                <p class="adm-para"></p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="ticketInfo-header">
+        <button class="tik-header-btn2"><h1>STATIC DISPLAY</h1></button>
+    </div>
+<div class="map-con">
+    <div class="map-img">
+        <img class="imageOfMap" src="https://www.lukedays2024.com/wp-content/uploads/2024/03/Air-Show-Layout-Map.jpg" alt="">
+    </div>
+</div>
+<%- include('partials/footer') %>

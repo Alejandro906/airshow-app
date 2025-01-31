@@ -1,0 +1,237 @@
+<style>
+    .ticket-container{
+        margin: 5px;
+        border: 2px solid #ccc;
+        background-color: white;
+        max-width: 1024px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .ur-tick{
+        display: flex;
+        justify-content: start;
+        max-width: 1024px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 5px;
+        font-family: 'Arial', 'Helvetica', sans-serif;
+        
+    }
+    .h1-tick{
+        font-weight: bold;
+        color: #2e3b4e;
+        font-size: 20px;
+        font-family: 'Arial', 'Helvetica', sans-serif;
+    }
+    .airshow-header{
+        display: flex;
+        justify-content: start;
+        width: 100%;
+        flex-direction: column;
+        align-items: start;
+        gap: 12px;
+        margin-left: 10px;
+    }
+    .red-header{
+        font-family: 'Arial', 'Helvetica', sans-serif;
+        font-weight: bold;
+        color: #c73c32;
+    }
+    .red-header>h1{
+        font-size: 32px;
+        font-family: 'Arial', 'Helvetica', sans-serif;
+    }
+    .bot-container{
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+    .left-container{
+        display: flex;
+        justify-content: space-between;
+        flex: 1;
+        gap: 20px;
+    }
+    .left-section{
+        flex: 1;
+        align-items: start;
+    }
+    .left-section>div{
+        font-size: 13px;
+        font-weight: 700;
+        margin-top: 15px;
+        font-family: 'Arial', 'Helvetica', sans-serif;
+    }
+    .right-section{
+        flex: 3;
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        gap: 20px;
+    }
+    .time-span{
+        font-weight: 700;
+        font-size: 13px;
+        color: #1DA1F2;
+        font-family: 'Arial', 'Helvetica', sans-serif;
+    }
+    .right-section>div{
+        max-width: 310px;
+        line-height: 20px;
+    }
+    .right-section>div>p{
+        font-size: 13px;
+        font-family: 'Arial', 'Helvetica', sans-serif;
+    }
+    .terminal{
+        font-weight: 700;
+        font-size: 12px;
+        color: #002f5f;
+        font-family: 'Arial', 'Helvetica', sans-serif;
+    }
+    .str-end{
+        font-weight: 700;
+        font-size: 12px;
+        color: #c73c32;
+        font-family: 'Arial', 'Helvetica', sans-serif;
+    }
+    .right-container{
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        flex: 1;
+        margin-top: 16px;
+        margin-left: 120px;
+        gap: 5px;
+    }
+    .desc-air{
+        font-weight: 300;
+        font-size: 12px;
+        color: #002f5f;
+        font-family: 'Arial', 'Helvetica', sans-serif;
+    }
+    .desc-con{
+        max-width: 225px;
+    }
+    .footer-con{
+        margin-left: 10px;
+        margin-right: 10px;
+        background-color: #bfe2f7;
+        height: 70px;
+        margin-bottom: 15px;
+        margin-top: 15px;
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+    }
+    .duration{
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        gap: 5px;
+        justify-content: center;
+    }
+    .time-dur{
+        font-weight: 700;
+        font-size: 13px;
+        color: #002f5f;
+        font-family: 'Arial', 'Helvetica', sans-serif;
+    }
+    .start-footer-con{
+        display: flex;
+        justify-content: start;
+    }
+    .end-footer-con{
+        display: flex;
+        align-items: center;
+    }
+    .form-button{
+        margin-top: 16px;
+        margin-right: 10px;
+    }
+    .return-btn{
+        background-color: #007FFF;
+        font-weight: 700;
+        font-size: 13px;
+        color: white;
+        border-radius: 5px;
+        font-family: 'Arial', 'Helvetica', sans-serif;
+        border: none;
+        padding: 5px;
+        transition: 0.3s all ease;
+    }
+    .return-btn:hover{
+        background-color: white;
+        color: #c73c32;
+        cursor: pointer;
+    }
+    .dateClass{
+        font-size: 19px;
+        background-color: #008009;
+        width: max-content;
+        padding: 3px;
+        border-radius: 5px;
+        color: white;
+        font-family: 'Arial', 'Helvetica', sans-serif;
+    }
+    .tick-num{
+        font-size: 13px;
+        background-color: #54bcfd;
+        width: max-content;
+        padding: 3px;
+        border-radius: 5px;
+        color: black;
+        font-family: 'Arial', 'Helvetica', sans-serif;
+    }
+</style>
+
+<body>
+    <%- include('partials/header') %>
+    <div class="ur-tick"><h1 class="h1-tick">YOUR TICKET</h1></div>
+    <div class="ticket-container">
+        <div class="airshow-header">
+            <div class="red-header"><h1><%= getAirshowPertainToTicket.name %></h1></div>
+            <div><span class="dateClass"><%= getAirshowPertainToTicket.dateOfEvent %></span></div>
+        </div>
+        <div class="bot-container">
+            <div class="left-container">
+                <div class="left-section"><div><p><%= getAirshowPertainToTicket.id %></p></div></div>
+                <div class="right-section">
+                    <div>
+                        <p><span class="time-span"><span class="str-end">START</span> <%= getAirshowPertainToTicket.startTime %></span> <%= getAirshowPertainToTicket.address %>, <span class="terminal"><%= getAirshowPertainToTicket.mainGate %></span></p>
+                        <span class="terminal">TERMINAL 1A</span>
+                    </div>
+                    <div>
+                        <p><span class="time-span"><span class="str-end">END</span> <%= getAirshowPertainToTicket.endTime %></span> <%= getAirshowPertainToTicket.address %>, <span class="terminal"><%= getAirshowPertainToTicket.secondaryGate %></span></p>
+                        <span class="terminal">TERMINAL 2B</span>
+                    </div>
+                </div>
+            </div>
+            <div class="right-container">
+                <div class="confirmed-con"><span class="str-end">Confirmed</span></div>
+                <div><span class="terminal">Provided by the city : <%= getAirshowPertainToTicket.city %> </span></div>
+                <div class="desc-con"><span class="terminal">Description : </span> <span class="desc-air"><%= getAirshowPertainToTicket.desc %></span></div>
+                <div><span class="terminal">Class : <%= getTicket.class %></span></div>
+                <div><span class="terminal">Section : <%= getTicket.section %></span></div>
+                <div><span class="tick-num">Ticket Number : <%= getTicket.id %></span></div>
+            </div>
+        </div>
+        <div class="footer-con">
+            <div class="start-footer-con">
+                <svg viewBox="-15.04 -15.04 46.08 46.08" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#007FFF"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke="#007FFFCCCCCC" stroke-width="0.576"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M8 16C12.4183 16 16 12.4183 16 8C16 3.58172 12.4183 0 8 0C3.58172 0 0 3.58172 0 8C0 12.4183 3.58172 16 8 16ZM7 3V8.41421L10.2929 11.7071L11.7071 10.2929L9 7.58579V3H7Z" fill="#007FFF"></path> </g></svg>
+                <div class="duration">
+                    <div><span class="time-dur">Total event duration</span></div>
+                    <div><span class="time-dur"><%= getAirshowPertainToTicket.duration %></span></div>
+                </div>
+            </div>
+            <div class="end-footer-con">
+                <form class="form-button" action="/user/returnTicket/<%= getTicket.id %>" method="POST">
+                    <button type="submit" class="return-btn">RETURN TICKET</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <%- include('partials/footer') %>
+</body>

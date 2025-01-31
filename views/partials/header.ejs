@@ -1,0 +1,162 @@
+<style>
+  h1{
+    font-size: 23px;
+  }
+  .header{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    background-color: #bfe2f7;
+    color: black;
+    height: 75px;
+  }
+
+  .headerContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left: 15px;
+  }
+
+  .headerTop{
+    display: flex;
+    justify-content: space-around;
+    gap: 30px;
+    cursor: pointer;
+    height: 60px;
+  }
+
+  .headerBtn1 {
+    background-color: #0071c2;
+    color: white;
+    font-weight: 500;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-right: 15px;
+    margin-top: 21px;
+  }
+
+  a{
+    color: black;
+    text-decoration: none;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 16px;
+    font-weight: none;
+  }
+
+  .logout-btn{
+    background-color: #CC0000;
+    color: white;
+    font-weight: 500;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-right: 15px;
+    margin-top: 21px;
+  }
+  .headerTop a:hover{
+    text-decoration: underline;
+  }
+  .button-container{
+    display: flex;
+    flex-direction: column;
+  }
+  .logo-image{
+    width: 215px;
+    height: 60px;
+    object-fit: contain;
+  }
+  .logo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 5px;
+  }
+  .logo1{
+    display: flex;
+    flex-direction: column;
+  }
+  .ab{
+    color: black;
+    text-decoration: none;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 16px;
+    font-weight: none;
+    border: none;
+    background-color: #bfe2f7;
+    text-align: center;
+    margin-right: 15px;
+  }
+  .ab:hover{
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  .form-out{
+    margin-bottom: 0px;
+  }
+  .logo3{
+    display: flex;
+    gap: 5px;
+    align-items: center;
+  }
+</style>
+<div class="header">
+  <% if(!loggedIn) { %>
+    <div class="headerContainer">
+      <div class="headerTop">
+        <div class="logo1">
+          <a href="/"><img class="logo-image" src="https://www.dubaiairshow.aero/sites/aerospace/airshow/dubaiairshow.aero/themes/site-specific-themes/campaign2021_das/logo.png" alt=""></a>
+        </div>
+        <div class="logo">
+          <a href="/"><span>HOME</span></a>
+        </div>
+        <div class="logo">
+          <a href=""><span>OUR CHARITY</span></a>
+        </div>
+        <div class="logo">
+          <a href=""><span>ATTRACTIONS</span></a>
+        </div>
+      </div>
+    </div>
+    <div class="logo3">
+      <svg width="25px" height="25px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M2.00098 11.999L16.001 11.999M16.001 11.999L12.501 8.99902M16.001 11.999L12.501 14.999" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M9.00195 7C9.01406 4.82497 9.11051 3.64706 9.87889 2.87868C10.7576 2 12.1718 2 15.0002 2L16.0002 2C18.8286 2 20.2429 2 21.1215 2.87868C22.0002 3.75736 22.0002 5.17157 22.0002 8L22.0002 16C22.0002 18.8284 22.0002 20.2426 21.1215 21.1213C20.3531 21.8897 19.1752 21.9862 17 21.9983M9.00195 17C9.01406 19.175 9.11051 20.3529 9.87889 21.1213C10.5202 21.7626 11.4467 21.9359 13 21.9827" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> </g></svg>
+      <a href="/auth/login"><button class="ab">Sign in / Register</button></a>
+    </div>
+  <% }else { %>
+    <div class="headerContainer">
+      <div class="headerTop">
+        <div class="logo1">
+          <a href="/"><img class="logo-image" src="https://www.dubaiairshow.aero/sites/aerospace/airshow/dubaiairshow.aero/themes/site-specific-themes/campaign2021_das/logo.png" alt=""></a>
+        </div>
+        <div class="logo">
+          <span>Welcome, <%= loggedIn.username %></span>
+        </div>
+        <div class="logo">
+          <a href="/"><span>HOME</span></a>
+        </div>
+        <div class="logo">
+          <a href=""><span>OUR CHARITY</span></a>
+        </div>
+        <div class="logo">
+          <a href=""><span>ATTRACTIONS</span></a>
+        </div>
+        <div class="logo">
+          <% if(loggedIn.hasTicket===true){ %>
+            <a href="/user/findMyTicket/<%= loggedIn.ticketId %>">
+              <span>VIEW TICKET</span>
+            </a>
+          <% } %>
+        </div>
+      </div>
+    </div>
+    <div class="logo3">
+      <svg width="25px" height="25px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M2.00098 11.999L16.001 11.999M16.001 11.999L12.501 8.99902M16.001 11.999L12.501 14.999" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M9.00195 7C9.01406 4.82497 9.11051 3.64706 9.87889 2.87868C10.7576 2 12.1718 2 15.0002 2L16.0002 2C18.8286 2 20.2429 2 21.1215 2.87868C22.0002 3.75736 22.0002 5.17157 22.0002 8L22.0002 16C22.0002 18.8284 22.0002 20.2426 21.1215 21.1213C20.3531 21.8897 19.1752 21.9862 17 21.9983M9.00195 17C9.01406 19.175 9.11051 20.3529 9.87889 21.1213C10.5202 21.7626 11.4467 21.9359 13 21.9827" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> </g></svg>
+      <a href=""><form action="/auth/logout" method="post" class="form-out"><button class="ab" type="submit">Logout</button></form></a>
+    </div>
+  <% } %>
+</div>

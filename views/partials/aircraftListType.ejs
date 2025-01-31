@@ -1,0 +1,67 @@
+<style>
+  .pList {
+    width: 100%;
+    max-width: 1024px;
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+  }
+
+  .pListItem {
+    flex: 1;
+    overflow: hidden;
+    cursor: pointer;
+  }
+
+  .pListImg {
+    width: 100%;
+    height: 175px;
+    object-fit: cover;
+  }
+
+  .pListTitles > h1 {
+    font-size: 18px;
+    color: #444;
+    text-transform: capitalize;
+  }
+
+  .pListTitles > h2 {
+    font-size: 14px;
+    font-weight: 700;
+    font-family: 'Times New Roman', Times, serif;
+  }
+
+  .pListTitles>button{
+    background-color: #febb02;
+    color: #555;
+    border: none;
+    padding: 3px;
+    margin-right: 10px;
+    font-weight: bold;
+  }
+
+  .button2{
+    background-color: #febb02;
+    color: #555;
+    border: none;
+    padding: 3px;
+    margin-right: 10px;
+    font-weight: bold;
+  }
+</style>
+
+<div class="pList">
+  <% countList.forEach((count, index) => { %>
+    <div class="pListItem">
+      <a href="/aircraft/type/<%= count.type %>">
+        <img src="<%= images[index % images.length] %>" alt="<%= count.type %>" class="pListImg" />
+      </a>
+      <div class="pListTitles">
+        <button>
+          <span><%= count.type %></span>
+        </button>
+        <h2><%= count.count %> Aircraft</h2>
+      </div>
+    </div>
+  <% }) %>
+</div>

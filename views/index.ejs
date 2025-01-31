@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="/styles/home.css">
+  <title>Home</title>
+  <style>
+    .homeContainer3{
+    margin-top: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    }
+
+    .bnt{
+    background-color: #bfe2f7;
+    color: #002f5f;
+    border: none;
+    padding: 3px;
+    margin-right: 10px;
+    font-weight: bold;
+    width: 950px;
+    font-size: 20px;
+    margin-left: 5px;
+  }
+  </style>
+</head>
+<body>
+  <%- include('partials/header') %>
+  <%- include('partials/image') %>
+  <div class="homeContainer3">
+    <button class="bnt"><span>Popular Airshows</span></button>
+    <%- include('partials/featuredAirshows') %>
+    <button class="bnt"><span>Browse by aircraft type</span></button>
+    <%- include('partials/aircraftListType') %>
+    <button class="bnt"><span>Featured aircraft models</span></button>
+    <%- include('partials/featuredAirplanes') %>
+    <%- include('partials/mailList') %>
+    <%- include('partials/footer') %>
+  </div>
+</body>
+</html>

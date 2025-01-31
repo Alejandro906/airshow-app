@@ -1,0 +1,48 @@
+<style>
+.featured{
+  width: 100%;
+  max-width: 1024px;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  z-index: 1;
+}
+
+.featuredItem{
+  position: relative;
+  color: white;
+  border-radius: 10px;
+  overflow: hidden;
+  height: 250px;
+  flex:1
+}
+
+.featuredImg{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.featuredTitles{
+  position: absolute;
+  bottom: -8px;
+  left: 9px;
+}
+
+h1{
+  font-size: 23px;
+}
+</style>
+
+<div class="featured">
+  <% featuredAirshows.forEach(airshow => { %>
+    <div class="featuredItem">
+      <a href="/airshow/find/<%= airshow.id %>">
+        <img src="<%= airshow.photos[0] %>" alt="<%= airshow.name %>" class="featuredImg" />
+      </a>
+      <div class="featuredTitles">
+        <h1><%= airshow.name %></h1>
+      </div>
+    </div>
+  <% }) %>
+</div>

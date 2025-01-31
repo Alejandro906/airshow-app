@@ -1,0 +1,23 @@
+<style>
+    .homeContainer{
+        margin-top: 25px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+        justify-content: center;
+    }
+
+    h1{
+    font-size: 23px;
+    }
+</style>
+<body>
+    <%- include('partials/header') %>
+    <div class="homeContainer">
+        <h1>This is the Aircraft Information Page</h1>
+        <p>and here is it name: <%= aircraftInfo.name %></p>
+        <span><%= aircraftInfo.wingspan %></span>
+        <%- include('partials/footer') %>
+    </div>
+</body>

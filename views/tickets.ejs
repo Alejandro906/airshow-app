@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+</head>
+<body>
+    
+</body>
+</html>
+<style>
+    h1 {
+        font-size: 23px;
+    }
+    .siTaxiOpH1{
+        font-size: 28px;
+        background-color: #bfe2f7;
+        color: #002f5f;
+        width: max-content;
+        padding: 3px;
+        border-radius: 5px;
+        font-family: 'Arial', 'Helvetica', sans-serif;
+    }
+    .headerClass{
+        display: flex;
+        justify-content: center;
+        margin-top: 15px;
+    }
+    .sponsor-container{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+        max-width: 1024px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .image-spon-con{
+        width: 240px;
+        height: 100px;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        outline: 1px solid #ccc;
+    }
+    .spon-image{
+        width: 220px;
+        height: 80px;
+        object-fit: contain;
+    }
+    .support{
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        font-size: 1.8rem;
+        font-family: 'Arial', 'Helvetica', sans-serif;
+        margin-top: 30px;
+        margin-bottom: 15px;
+    }
+    .seperate{
+        height: 5px;
+        width: 75px;
+        background-color: black;
+    }
+    .ticketsContainer{
+        display: flex;
+        width: 100%;
+        max-width: 1280px;
+    }
+    .available-tickets{
+        flex: 1;
+        width: 100%;
+        height: 650px;
+        overflow-y: scroll;
+    }
+    .airport-map{
+        flex: 1;
+        width: 100%;
+        height: 650px;
+        position: sticky;
+        background-color: #febb02;
+    }
+    .mainContainer{
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+    }
+    #map{
+        width: 100%;
+        height: 650px;
+    }
+    .ticketContainer{
+        display: flex;
+        gap: 15px;
+    }
+    .imgContainer{
+        flex: 1;
+    }
+    .infoContainer{
+        flex: 4;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        justify-content: center;
+    }
+    .ticketImg{
+        width: 150px;
+        height: 105px;
+        object-fit: cover;
+    }
+    .numContainer{
+        display: flex;
+        gap: 10px;
+    }
+    .spanTime {
+        font-size: 10px;
+        padding: 0px 4px;
+        color: white;
+        background-color: rgb(83, 129, 14);
+        font-family: Arial, Helvetica, sans-serif;
+        border-radius: 7px;
+        align-content: center;
+        font-weight: 650;
+    }
+    .spanMess{
+        color: rgb(83, 129, 14);
+        font-size: 14px;
+    }
+    .freeSpan{
+        color: black;
+        font-weight: 700;
+    }
+    .otSpan{
+        font-weight: 400;
+    }
+    .spanClass{
+        background-color: rgb(221, 60, 60);
+        font-size: 10px;
+        padding: 0px 4px;
+        color: black;
+        font-family: Arial, Helvetica, sans-serif;
+        border-radius: 7px;
+        align-content: center;
+        font-weight: 650;
+    }
+    .spanClassBus{
+        background-color: rgb(234, 165, 0);
+        font-size: 10px;
+        padding: 0px 4px;
+        color: white;
+        font-family: Arial, Helvetica, sans-serif;
+        border-radius: 7px;
+        align-content: center;
+        font-weight: 650;
+    }
+    .spanBut>a{
+        font-size: 10px;
+        padding: 2px 12px;
+        color: black;
+        font-family: Arial, Helvetica, sans-serif;
+        border-radius: 7px;
+        align-content: center;
+        font-weight: 650;
+        height: 18px;
+        transition: all ease 0.3s;
+        background-color: #bfe2f7;
+    }
+
+    .spanBut>a:hover{
+        background-color: rgb(242, 105, 7);
+    }
+
+    .headerTickets {
+        display: flex;
+        height: auto;
+        flex-direction: column;
+        gap: 15px;
+        justify-content: center;
+        position: sticky;
+        top: 0; 
+        background-color: #fff;
+        z-index: 10;
+        padding: 15px;
+        border-bottom: 1px solid #ccc; 
+        margin-bottom: 20px
+    }
+
+    .spanHeaderTitle{
+        font-size: 22px;
+        font-family: 'Courier New', Courier, monospace;
+        font-weight: 700;
+    }
+
+    .ticketCount{
+        font-size: 20px;
+        font-family: 'Courier New', Courier, monospace;
+        font-weight: 700;
+        margin-bottom: 20px;
+        color: white;
+        background-color: #002f5f;
+        border-radius: 5px;
+        padding: 0px 4px;
+    }
+    .countContainer{
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        justify-content: center;
+    }
+</style>
+
+<body>
+    <%- include('partials/header') %>
+    <!-- Economy Class Tickets -->
+    <div class="headerClass">
+        <h1><span class="siTaxiOpH1">Tickets for <%= airshowId.name %></span></h1>
+    </div>
+    <div class="mainContainer">
+        <div class="ticketsContainer">
+            <div class="available-tickets">
+                <div class="headerTickets">
+                    <span class="spanHeaderTitle"><%= airshowId.name %></span>
+                    <span><%= airshowId.dateOfEvent %>, <%= airshowId.address %></span>
+                </div>
+                <div class="countContainer">
+                    <span class="ticketCount"><%= getAvailableCount %> Tickets</span>
+                </div>
+                <% if (getAvailableTicketEconomy.length > 0) { %>
+                    <% getAvailableTicketEconomy.forEach((ticket) => { %>
+                        <div class="ticketContainer">
+                            <div class="imgContainer">
+                                <img src="<%= airshowId.photos[3] %>" class="ticketImg">
+                            </div>
+                            <div class="infoContainer">
+                                <div class="numContainer">
+                                    <span class="spanTime"><%= airshowId.startTime %></span>
+                                    <span class="spanMess">Great time!</span>
+                                    <span class="spanBut"><a href="/ticket/find/<%=airshowId.id%>/<%=ticket.id%>">View more</a></span>
+                                </div>
+                                <div class="spanPricing">
+                                    <span class="otSpan"><span class="freeSpan">$FREE</span> each incl. no fees!</span>
+                                </div>
+                                <div class="sectionInfoCont">
+                                    <span>Section <span class="spanTime"><%= ticket.section %></span>, <%= airshowId.mainGate %></span>
+                                    <span class="spanClass"><%= ticket.class %></span>
+                                </div>
+                            </div>
+                        </div>
+                    <% }); %> 
+                <% } else { %>
+                    <p>No tickets available in this section.</p>
+                <% } %>
+                <% if (getAvailableTicketBusiness.length > 0) { %>
+                    <% getAvailableTicketBusiness.forEach((ticket) => { %>
+                        <div class="ticketContainer">
+                            <div class="imgContainer">
+                                <img src="<%= airshowId.photos[4] %>" class="ticketImg">
+                            </div>
+                            <div class="infoContainer">
+                                <div class="numContainer">
+                                    <span class="spanTime"><%= airshowId.startTime %></span>
+                                    <span class="spanMess">Great time!</span>
+                                    <span class="spanBut"><a href="/ticket/find/<%=airshowId.id%>/<%=ticket.id%>">View more</a></span>
+                                </div>
+                                <div class="spanPricing">
+                                    <span class="otSpan"><span class="freeSpan">$FREE</span> each incl. no fees!</span>
+                                </div>
+                                <div class="sectionInfoCont">
+                                    <span>Section <span class="spanTime"><%= ticket.section %></span>, <%= airshowId.mainGate %></span>
+                                    <span class="spanClassBus"><%= ticket.class %></span>
+                                </div>
+                            </div>
+                        </div>
+                    <% }); %> 
+                <% } else { %>
+                    <p>No tickets available in this section.</p>
+                <% } %>
+            </div>
+            <div class="airport-map">
+                <div id="map"></div> <!-- Map container -->
+                <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+                <script>
+                    // Define airshows and their coordinates (latitude and longitude)
+                    const events = ["EAA AirVenture Oshkosh", "London Airshow", "Royal International Air Tattoo"];
+                    const coordinates = [
+                        [43.983, -88.558], // EAA AirVenture Oshkosh
+                        [42.983, -81.250], // London Airshow (London, Ontario, Canada)
+                        [51.682, -1.785]   // Royal International Air Tattoo (RAF Fairford, UK)
+                    ];
+                    
+                    let index;
+                
+                    // Check which airshow is currently selected
+                    events.forEach((event, i) => {
+                        if(event === "<%= airshowId.name %>"){ 
+                            index = i;
+                        }
+                    });
+                
+                    // Initialize the Leaflet map centered on the selected airshow's coordinates
+                    const map = L.map('map').setView(coordinates[index], 14); // Zoom level 13 is good for showing airshow area
+                
+                    // Add OpenStreetMap tiles
+                    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                    }).addTo(map);
+                
+                    // Add a marker at the selected airshow location
+                    const marker = L.marker(coordinates[index]).addTo(map);
+                
+                    // Get airshow details from the server-side data (passed via EJS)
+                    const airshowName = "<%= airshowId.name %>";
+                    const airshowAddress = "<%= airshowId.address %>";
+                
+                    // Add a popup to the marker with airshow details
+                    marker.bindPopup(`<b>${airshowName}</b><br>${airshowAddress}`).openPopup();
+                </script>                              
+            </div>            
+        </div>
+    </div>
+    <div class="support">
+        <h3>SUPPORTED BY</h3>
+    </div>
+    <div class="sponsor-container">
+            <div class="image-spon-con">
+                <img class="spon-image" src="https://www.dubaiairshow.aero/sites/aerospace/airshow/files/campaign2017/Untitled%20design%20-%202021-06-29T093622.210.png" alt="">
+            </div>
+            <div class="image-spon-con">
+                <img class="spon-image" src="https://www.dubaiairshow.aero/sites/aerospace/airshow/files/campaign2017/MOD%20Logo%20-%20220x80_0.png" alt="">
+            </div>
+            <div class="image-spon-con">
+                <img class="spon-image" src="https://www.dubaiairshow.aero/sites/aerospace/airshow/files/campaign2017/Untitled%20design%20-%202021-10-12T125056.056.png" alt="">
+            </div>
+            <div class="image-spon-con">
+                <img class="spon-image" src="https://www.dubaiairshow.aero/sites/aerospace/airshow/files/campaign2017/Untitled%20design%20-%202021-10-12T125334.902.png" alt="">
+            </div>
+            <div class="image-spon-con">
+                <img class="spon-image" src="https://www.dubaiairshow.aero/sites/aerospace/airshow/files/campaign2017/Untitled%20design%20-%202022-11-16T092131.890.png" alt="">
+            </div>
+            <div class="image-spon-con">
+                <img class="spon-image" src="https://www.dubaiairshow.aero/sites/aerospace/airshow/files/campaign2017/Untitled%20design%20-%202021-07-04T122940.759.png" alt="">
+            </div>
+            <div class="image-spon-con">
+                <img class="spon-image" src="https://www.dubaiairshow.aero/sites/aerospace/airshow/files/campaign2017/Untitled%20design%20-%202023-01-04T170125.947.png" alt="">
+            </div>
+            <div class="image-spon-con">
+                <img class="spon-image" src="https://www.dubaiairshow.aero/sites/aerospace/airshow/files/campaign2017/Untitled%20design%20-%202022-11-16T101103.028.png" alt="">
+            </div>
+            <div class="image-spon-con">
+                <img class="spon-image" src="https://www.dubaiairshow.aero/sites/aerospace/airshow/files/campaign2017/Untitled%20design%20-%202022-11-16T101221.426.png" alt="">
+            </div>
+            <div class="image-spon-con">
+                <img class="spon-image" src="https://www.dubaiairshow.aero/sites/aerospace/airshow/files/campaign2017/Untitled%20design%20-%202023-03-16T144722.824.png" alt="">
+            </div>
+            <div class="image-spon-con">
+                <img class="spon-image" src="https://www.dubaiairshow.aero/sites/aerospace/airshow/files/campaign2017/21.jpg" alt="">
+            </div>
+        </div>
+    </div>
+    <%- include('partials/footer') %>
+</body>
+

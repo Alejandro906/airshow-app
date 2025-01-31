@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap" rel="stylesheet">
+  <style>
+    .hero-section {
+        background-image: url('https://images.squarespace-cdn.com/content/v1/602531ed52cb0b327fea1168/1613489304889-LFT1QKSUM6XTAQ97FBBH/109703129_3463177487026791_2371460464698408017_o.jpg');
+        background-size: cover;
+        background-position: center;
+        height: 100vh;
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        text-align: start;
+        color: white;
+        position: relative;
+        font-family: "Titillium Web", Times New Roman, Times, serif;
+    }
+  
+    .hero-content{
+      margin-left: 125px;
+    }
+  
+    .hero-content h1 {
+        font-size: 45px;
+        margin-bottom: 20px;
+        text-transform: uppercase;
+        font-weight: 700;
+    }
+  
+    .hero-content p {
+        font-size: 19px;
+        margin-bottom: 11px;
+    }
+  
+    .hero-content .button {
+        background-color: #CC0000;
+        color: white;
+        padding: 5px;
+        border: none;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 0px;
+        font-family: "Titillium Web", Times New Roman, Times, serif;
+        font-weight: 550;
+        text-transform: uppercase;
+        border: 3px solid transparent;
+        transition: 0.3s all ease;
+    }
+  
+    .hero-content .button:hover {
+        background-color: #9d0202;
+        border-color: #fff;
+        border: solid 3px;
+    }
+  </style>
+</head>
+<body>
+  <div class="hero-section">
+    <div class="hero-content">
+        <h1>RIAT25 NOW ON SALE!</h1>
+        <p>Tickets for next year's show are available now, including all enclosures.</p>
+        <a href="/airshow/find/<%= featuredAirshows[0].id %>">
+          <button class="button">Tickets & Packages</button>
+        </a>
+    </div>
+  </div>
+</body>
+</html>

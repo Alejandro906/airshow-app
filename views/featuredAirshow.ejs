@@ -1,0 +1,231 @@
+<style>
+    /* General Container */
+    .homeContainer {
+        margin-top: 25px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+        justify-content: center;
+    }
+
+    h1 {
+        font-size: 23px;
+    }
+
+    /* Ticket Styling */
+    .tickets {
+        border: 1px solid lightgray;
+        padding: 10px;
+        border-radius: 5px;
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+        width: 1024px;
+    }
+
+    /* Image Styling */
+    .siImg {
+        width: 200px;
+        height: 230px;
+        object-fit: cover;
+    }
+
+    /* Description Styling */
+    .siDesc {
+        display: flex;
+        flex-direction: column;
+        gap: 7px;
+        flex: 2;
+    }
+
+    .siTitle {
+        font-size: 27px;
+        color: #555;
+        background-color: #febb02;
+        width: max-content;
+        padding: 3px;
+        border-radius: 5px;
+    }
+
+    .siTaxiOp {
+        font-size: 12px;
+        background-color: #008009;
+        color: white;
+        width: max-content;
+        padding: 3px;
+        border-radius: 5px;
+    }
+
+    .siSubtitle {
+        font-size: 12px;
+        font-weight: bold;
+    }
+
+    .siFeatures {
+        font-size: 12px;
+    }
+
+    .siCancelOp {
+        font-size: 12px;
+        color: #008009;
+        font-weight: bold;
+    }
+
+    .siCancelOpSubtitle {
+        font-size: 12px;
+        color: #008009;
+    }
+
+    /* Details Section */
+    .siDetails {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .siRating {
+        display: flex;
+        justify-content: space-between;
+        width: 275px;
+    }
+
+    .btn1 {
+        background-color: #003580;
+        color: white;
+        padding: 5px;
+        font-weight: bold;
+        border: none;
+    }
+
+    .siDetailTexts {
+        text-align: right;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .siPrice {
+        font-size: 24px;
+    }
+
+    .siTaxOp {
+        font-size: 12px;
+        color: #008009;
+    }
+
+    .siCheckButton {
+        background-color: #0071c2;
+        color: white;
+        font-weight: bold;
+        padding: 7px 3px;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+        font-size: 12px;
+        transition: 0.3s all ease;
+    }
+
+    .siCheckButton:hover{
+        background-color: #008009;
+        color: white;
+    }
+
+    .manuBnt {
+        background-color: #CC0000;
+        color: white;
+        padding: 5px;
+        font-weight: bold;
+        border: none;
+    }
+
+    .bTik {
+        background-color: #008009;
+        color: white;
+        padding: 5px;
+        font-weight: bold;
+        border: none;
+        border-radius: 5px;
+        font-size: 23px;
+    }
+    .siTaxiOpSt{
+        font-size: 12px;
+        background-color: #007FFF;
+        color: white;
+        width: max-content;
+        padding: 3px;
+        border-radius: 5px;
+    }
+    .siTaxiOpEn{
+        font-size: 12px;
+        background-color: #c73c32;
+        color: white;
+        width: max-content;
+        padding: 3px;
+        border-radius: 5px;
+    }
+    .time-con{
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+    }
+    .siTaxiOpH1{
+        font-size: 28px;
+        background-color: #bfe2f7;
+        color: #002f5f;
+        width: max-content;
+        padding: 3px;
+        border-radius: 5px;
+        font-family: 'Arial', 'Helvetica', sans-serif;
+    }
+</style>
+
+<body>
+    <%- include('partials/header') %>
+    <div class="homeContainer">
+        <div>
+            <h1><span class="siTaxiOpH1">Tickets for <%= featuredAirshow.name %></span></h1>
+        </div>
+        <% countTickets.forEach((section, index) => { %>
+            <a href=""><button class="bTik">Tickets left: <%= section.count %></button></a>
+            <div class="tickets">
+                <!-- Image and Section Information -->
+                <img src="<%= featuredAirshow.photos[index] %>" alt="Aircraft Image" class="siImg" />
+                <div class="siDesc">
+                    <h1 class="siTitle">Seating <%= section.section %> of runway</h1>
+                    <span class="siTaxiOp"><%= featuredAirshow.dateOfEvent %></span>
+                    <span class="siSubtitle">
+                        Airshow covers a distance of <%= featuredAirshow.distance %>
+                    </span>
+                    <span class="siFeatures"><%= featuredAirshow.desc %></span>
+                    <span class="siCancelOp">Free cancellation</span>
+                    <span class="siCancelOpSubtitle">
+                        You can cancel later, so lock in this great deal today!
+                    </span>
+                    <div class="time-con">
+                        <span class="siTaxiOpSt">Start <%= featuredAirshow.startTime %></span>
+                        <span class="siTaxiOpEn">End <%= featuredAirshow.endTime %></span>
+                    </div>
+                </div>
+
+                <div class="siDetails">
+                    <% if (featuredAirshow.title) { %>
+                        <div class="siRating">
+                            <button class="manuBnt">Airshow</button>
+                            <button class="btn1"><%= featuredAirshow.title %></button>
+                        </div>
+                    <% } %>
+                    <div class="siDetailTexts">
+                        <span class="siPrice"><%= featuredAirshow.address %></span>
+                        <span class="siTaxOp">Includes food and drinks</span>
+                        <a href="/ticket/getBySection/<%= featuredAirshow.id %>/<%= section.section %>">
+                            <button class="siCheckButton">Check availability</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        <% }) %>
+        <%- include('partials/footer') %>
+    </div>
+</body>
