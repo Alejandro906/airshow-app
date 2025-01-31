@@ -1,0 +1,28 @@
+name: Deploy Nodejs app to EC2 AWS
+
+on:
+    push:
+        branch:
+            - main
+
+jobs:
+    build:
+        runs-on: ubuntu@latest
+        steps:
+            - name: Checkout source
+              uses: actions/checkout@v4
+            - name: Login to Docker Hub
+              run: docker login -u 
+            - name: Build Docker image
+              run: docker build -t 
+            - name: Publish image from docker hub
+              run: docker publish 
+    
+    deploy: 
+        needs: build
+        runs-on: self-hosted
+        steps: 
+            - name: Pull image from Docker 
+              run: docker pull 
+            - name: Run docker container
+              run: docker run -d -p 3000:3000 --name nodejs-app-container
